@@ -108,7 +108,158 @@ Scenario: Login using Google option
 	Then display the error message 
 	
 
+	///Page objects
+ public class smoke extends basePage{
+
+	
+	public smoke(WebDriver driver) {
+		super(driver);
+		
+	}
+	
+	
+	@FindBy(xpath="//img[@alt[normalize-space()='ZigWheels']]")
+	public WebElement logo;
+	
+	@FindBy(xpath="//input[@id='headerSearch']")
+	public WebElement searchbox;
+	
+	@FindBy(xpath="//div[@id='des_lIcon']")
+	public WebElement btn;
+	
+	
+	@FindBy(xpath="//a[normalize-space()='New Bikes']")
+	public WebElement newBikesHover;
+	
+	@FindBy(xpath="//*[@id=\"headerNewNavWrap\"]/nav/div/ul/li[3]/ul/li")
+	public WebElement bikedrpDown;
+	
+	@FindBy(xpath="//*[@id=\"headerNewNavWrap\"]/nav/div/ul/li[3]/ul/li[5]/span")
+	public WebElement drpUpcomingBikes;
+	
+	@FindBy(xpath="//select[@id='makeId']")
+	public WebElement manufacturerdrpDown;
+	
+	
+	
+	
+	
+	
+	public void cheakLogo()
+	{
+		logo.isDisplayed();
+	}
+	
+	public void cheakSearchbox()
+	{
+		searchbox.isDisplayed();
+	}
+	
+	
+	public void cheakloginbtn()
+	{
+		btn.isDisplayed();
+	}
+	
+
+ //stepdefinition
+ public class stepdef1 {
+
+	static HelperClass b=new HelperClass();
+	public static WebDriver driver;
+	static smoke f1 ;
+	
+	
+	
+	@Given("Homepage of the ZigWheels")
+	public void homepage_of_the_zig_wheels() {
+	  driver=HelperClass.getDriver();
+	}
+
+	@Then("ZigWheels logo  should be displayed")
+	public void zig_wheels_logo_should_be_displayed() {
+		
+		f1 = new smoke(driver);
+	    f1.cheakLogo();
+		
+	}
+
+	@Then("Searchbox should be displayed")
+	public void searchbox_should_be_displayed() {
+		f1 = new smoke(driver);
+	   f1.cheakSearchbox();
+		
+	}
+
+	@Then("Login  button should be displayed")
+	public void login_button_should_be_displayed() {
+		f1.cheakloginbtn();
+	}
+
+	@Then("scrollbar is present")
+	public void scrollbar_is_present()
+	{
 	 
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+        long documentHeight = (long) js.executeScript("return document.documentElement.scrollHeight;");
+        long viewportHeight = (long) js.executeScript("return window.innerHeight;");
+
+        // Check if the document height exceeds the viewport height
+        boolean isScrollBarPresent = documentHeight > viewportHeight;
+
+        // Print the result
+//        if (isScrollBarPresent) {
+//            System.out.println("Scroll bar is present on the webpage.");
+//        } else {
+//            System.out.println("Scroll bar is not present on the webpage.");
+//        }	 
+        
+        Assert.assertTrue(isScrollBarPresent, "Scroll bar is not present on the webpage.");
+        
+        
+        
+    
+	}
+	
+	
+	
+	@When("User hover on New Bikes  Dropdown")
+	public void user_hover_on_new_bikes_dropdown() {
+	    
+	}
+
+	@Then("Dropdown options Should be displayed")
+	public void dropdown_options_should_be_displayed() {
+	   
+	}
+
+	@When("user clicks on the Upcoming Bikes")
+	public void user_clicks_on_the_upcoming_bikes() {
+	    
+	}
+
+	@Then("user should be nevigated to the upcoming bikes page")
+	public void user_should_be_nevigated_to_the_upcoming_bikes_page() {
+	   
+	}
+
+	@When("user  manipulated to the manufacturer dropdown")
+	public void user_manipulated_to_the_manufacturer_dropdown() {
+	
+	}
+
+	@Then("user select Honda.")
+	public void user_select_honda() {
+	    
+	}
+
+	@Then("It displays list of Honda Bike")
+	public void it_displays_list_of_honda_bike() {
+	   
+	}
+
+
+}
 	
 	
 	
