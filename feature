@@ -261,8 +261,105 @@ Scenario: Login using Google option
 
 }
 	
+/// refresion page obejcts 
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+
+public class regreesion  extends basePage {
+
+
+	public regreesion(WebDriver driver) {
+		super(driver);
+	}
 	
 	
+	@FindBy(xpath="//a[normalize-space()='Used Cars']")
+	public WebElement usedCar;
+	
+	@FindBy(xpath="//ul[@class='h-d-dd h-col-1']")
+	public WebElement usedCardrpdown;
+	
+	@FindBy(xpath="//input[@id='headerSearch']")
+	public WebElement searchbox;
+	
+	@FindBy(xpath="//ul[@id='ui-id-1']")
+	 public WebElement searchOption;
+
+	
+	
+	public void hoverUsedcar()
+	{
+		Actions act = new Actions(driver);
+		act.moveToElement(usedCar).perform();
+		
+	}
+	
+	public void cheakdrpDown()
+	{
+		usedCardrpdown.isDisplayed();
+	}
+	
+	public void clickSearch()
+	{
+		searchbox.click();
+	}
+	
+	public void searchOptions()
+	{
+		searchOption.isDisplayed();
+	}
+	
+}
+
+
+
+///step definition
+
+
+ package stepDefinition;
+
+import org.openqa.selenium.WebDriver;
+
+import com.utils.HelperClass;
+
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pageObjects.regreesion;
+
+public class stepdef2 {
+
+	static HelperClass b=new HelperClass();
+	
+	public static WebDriver driver =HelperClass.getDriver();
+	static regreesion f2 ;
+	
+	
+	@When("user Hover on Used Cars")
+	public void user_hover_on_used_cars() {
+	    f2.hoverUsedcar();
+	}
+
+	@Then("Dropdown is displayed")
+	public void dropdown_is_displayed() {
+	  f2.cheakdrpDown();
+	}
+
+	@When("User Cliks on the search Bar")
+	public void user_cliks_on_the_search_bar() {
+	   f2.clickSearch();
+	}
+
+	@Then("Search Options is displayed")
+	public void search_options_is_displayed() {
+	    f2.searchOptions();
+	}
+
+}
+
 
 	
 	 
