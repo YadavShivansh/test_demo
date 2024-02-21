@@ -359,6 +359,39 @@ public class stepdef2 {
 	}
 
 }
+	driver = new ChromeDriver();
+		
+		driver.get("https://www.zigwheels.com/");
+		 driver.findElement(By.xpath("//*[@id=\"forum_login_wrap_lg\"]")).click(); 
+		 
+		 driver.findElement(By.xpath("//*[@id=\"myModal3-modal-content\"]/div[1]/div/div[3]/div[6]/div")).click();
+	
+
+		  String mainWindowHandle = driver.getWindowHandle();
+	        for (String handle : driver.getWindowHandles()) {
+	            if (!handle.equals(mainWindowHandle)) {
+	                // Switch to the new window
+	               driver.switchTo().window(handle);
+	                 break;
+	               
+	            }
+	        }
+	        
+	        WebElement email=driver.findElement(By.xpath("//input[@id='identifierId']"));
+	        email.sendKeys("afdf123@gmail.com");
+	        
+	       
+	        
+	        WebElement button = driver.findElement(By.xpath("//span[normalize-space()='Next']"));
+	        button.click();
+	        
+	        WebElement pass= driver.findElement(By.xpath("//input[@name='Passwd']"));
+	        pass.sendKeys("sdegre");
+	        
+	        String  msg = driver.findElement(By.xpath("//div[@jsname=\"B34EJ\"]//span")).getText();
+	    
+
+
 
 
 	
