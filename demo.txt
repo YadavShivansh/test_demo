@@ -1,1 +1,18 @@
 Shivansh yadav
+
+String originalWindow = driver.getWindowHandle();
+
+		for (String windowHandle : driver.getWindowHandles()) {
+			if (!originalWindow.contentEquals(windowHandle)) {
+				driver.switchTo().window(windowHandle);
+				break;
+			}
+		}
+
+		
+		Pr = HelperClass.getProperties();
+		String expectedTitle = Pr.getProperty("CarDekh_Title");
+
+		String actualTitle = driver.getTitle();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		Assert.assertEquals(actualTitle, expectedTitle);
